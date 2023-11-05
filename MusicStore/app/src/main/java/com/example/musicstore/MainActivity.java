@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayAdapter<String> arrayAdapter;
     Map<String, Float> map;
     String goodsName = "guitar";
-    EditText userName;
+    String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void addToCart(View view) {
-        userName = findViewById(R.id.nameEditText);
-        Order order = new Order(userName.getText().toString(), goodsName, quantity, getNewPrice());
+        EditText editText = findViewById(R.id.nameEditText);
+        userName = editText.getText().toString();
+        if (userName.isBlank() || userName.isEmpty()) return;
+
+        userName = userName.trim();
+        Order order = new Order(userName, goodsName, quantity, getNewPrice());
         Log.d("print order", order.toString());
         Intent orderIntent = new Intent(MainActivity.this, OrderActivity.class);
         orderIntent.putExtra("userName", order.getUserName());
