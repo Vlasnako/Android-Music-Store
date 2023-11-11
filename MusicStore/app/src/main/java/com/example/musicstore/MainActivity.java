@@ -56,10 +56,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         userName = userName.trim();
         Order order = new Order(userName, goodsName, quantity, getNewPrice());
+        order.setPricePerPiece(map.get(goodsName));
         Log.d("print order", order.toString());
+
         Intent orderIntent = new Intent(MainActivity.this, OrderActivity.class);
         orderIntent.putExtra("userName", order.getUserName());
-
+        orderIntent.putExtra("goodsName", order.getGoodsName());
+        orderIntent.putExtra("quantity", order.getQuantity());
+        orderIntent.putExtra("pricePerPiece", order.getPricePerPiece());
+        orderIntent.putExtra("orderPrice", order.getOrderPrice());
         startActivity(orderIntent);
     }
 

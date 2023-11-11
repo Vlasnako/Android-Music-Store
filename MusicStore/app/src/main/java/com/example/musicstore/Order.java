@@ -6,7 +6,16 @@ public class Order {
     private String userName;
     private String goodsName;
     private int quantity;
+    private float pricePerPiece;
     private float orderPrice;
+
+    public float getPricePerPiece() {
+        return pricePerPiece;
+    }
+
+    public void setPricePerPiece(float pricePerPiece) {
+        this.pricePerPiece = pricePerPiece;
+    }
 
     public Order(String userName, String goodsName, int quantity, float orderPrice) {
         this.userName = userName;
